@@ -42,20 +42,6 @@ function PracticeWord() {
       console.error("Error comparing phonetics:", error);
       setFeedback("Failed to analyse pronunciation");
     }
-    // axios
-    //   .post("http://localhost:5000/analyse", {
-    //     recognizedText: transcript,
-    //     // recognizedText: "random",
-    //     expectedWord: word,
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     setFeedback(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error comparing phonetics:", error);
-    //     setFeedback("Failed to analyse pronunciation");
-    //   });
   }
 
   // START RECORDING VOICE FUNCTION--------------------------------------------------------
@@ -79,13 +65,6 @@ function PracticeWord() {
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
-      // console.log("Speech recognition result:", transcript);
-      // console.log("Phonetic:", phonetic);
-      // setTranscript(transcript);
-      // setIsRecording(false);
-
-      // Send transcript and word to backend for comparison
-      // analyse();
 
       axios
         .post("http://localhost:5000/analyse", {
@@ -148,11 +127,6 @@ function PracticeWord() {
           <p className={styles.phonetic}>
             Phonetic transcription: <strong>{phonetic}</strong>
           </p>
-          {/* <p className={styles.instructions}>
-            Read the instructions below and When ready press the button to start
-            recording and pronounce the word aloud.
-          </p>
-          <p>{instructions}</p> */}
 
           <p className={styles.instructions}>
             <strong>Instructions:</strong> Read the instructions below, and when
@@ -187,31 +161,6 @@ function PracticeWord() {
         </div>
       )}
     </div>
-
-    // <div className={styles.practiceDiv}>
-    //   {word && phonetic ? (
-    //     <div>
-    //       <h1>Practice pronouncing the word: {word}</h1>
-    //       <p>Phonetic: {phonetic}</p>
-    //       <p>Instructions: {instructions}</p>
-    //       {isRecording ? (
-    //         <button className={styles.recordingBtn} onClick={stopRecording}>
-    //           Stop Recording
-    //         </button>
-    //       ) : (
-    //         <button className={styles.tryBtn} onClick={startRecording}>
-    //           Start Practicing
-    //         </button>
-    //       )}
-    //       <p>Transcript: {transcript}</p>
-    //       <p>Feedback: {feedback}</p>
-    //     </div>
-    //   ) : (
-    //     <div>
-    //       <p>No data</p>
-    //     </div>
-    //   )}
-    // </div>
   );
 }
 

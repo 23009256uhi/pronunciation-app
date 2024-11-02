@@ -14,6 +14,6 @@ export class NavbarComponent {
   @Output() toggleSidebar = new EventEmitter<void>(); // Emits even to toglle sidebar
 
   onToggle() {
-    this.toggleSidebar.emit(); //Emit the event to the parent when called
+    this.toggleSidebar.emit(); // Emits the event to the parent when called
   }
 }

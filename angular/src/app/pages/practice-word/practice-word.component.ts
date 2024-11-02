@@ -22,12 +22,6 @@ export class PracticeWordComponent {
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
-    // const navigation = this.router.getCurrentNavigation();
-    // const state = navigation?.extras?.state as {
-    //   word: string;
-    //   phonetic: string;
-    // };
-
     // GET WORD AND PHONETIC
     const state = history.state as { word: string; phonetic: string };
 
@@ -60,6 +54,8 @@ export class PracticeWordComponent {
 
   // START RECORDING VOICE FUNCTION--------------------------------------------------------
   startRecording(): void {
+    console.log('start recording called');
+
     if (!('webkitSpeechRecognition' in window)) {
       alert('Your browser does not support speech recognition');
       return;

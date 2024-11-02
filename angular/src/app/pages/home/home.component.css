@@ -17,7 +17,7 @@
 }
 
 @media (max-width: 830px) {
-  .homeDiv {
+  .home-div {
     height: 100vh;
   }
 }

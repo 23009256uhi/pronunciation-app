@@ -16,7 +16,7 @@
     <!-- Button with Microphone for Start Recording  -->
     <button
       [ngClass]="isRecording ? 'recording-button' : 'try-button'"
-      (click)="(isRecording ? 'stopRecording' : 'startRecording')"
+      (click)="isRecording ? stopRecording() : startRecording()"
     >
       {{ isRecording ? "Stop Recording" : "Start Recording" }}
     </button>

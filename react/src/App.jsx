@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import SpeechRecognition from "./components/SpeechRecognition";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Conversation from "./pages/Conversation";
 import SearchResults from "./pages/SearchResults";
