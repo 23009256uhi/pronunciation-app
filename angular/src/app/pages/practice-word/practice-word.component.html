@@ -1,0 +1,34 @@
+<div class="practice-div">
+  <div *ngIf="word && phonetic" class="speech-container">
+    <h1 class="word-title">
+      Let's practice how to say: <span class="word">{{ word }}</span>
+    </h1>
+    <p class="phonetic">
+      Phonetic transcription: <strong>{{ phonetic }}</strong>
+    </p>
+    <p class="instructions">
+      <strong>Instructions:</strong> Read the instructions below, and when
+      ready, <span class="highlight">press the button</span> to start recording
+      and <span class="highlight">pronounce the word aloud</span>.
+    </p>
+    <p class="instruction-details">{{ instructions }}</p>
+
+    <!-- Button with Microphone for Start Recording  -->
+    <button
+      [ngClass]="isRecording ? 'recording-button' : 'try-button'"
+      (click)="(isRecording ? 'stopRecording' : 'startRecording')"
+    >
+      {{ isRecording ? "Stop Recording" : "Start Recording" }}
+    </button>
+
+    <div class="feedback-container">
+      <p class="transcript">Transcript: {{ transcript }}</p>
+      <p
+        [ngClass]="feedback.includes('Failed') ? 'error' : 'success'"
+        class="feedback"
+      >
+        {{ feedback }}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<nav class="navbar">
+  <div class="sticky">
+    <div class="logo">
+      <img src="/logo.svg" alt="icon" class="logoIcon" />
+      <span>LinguaAI</span>
+    </div>
+    <ul class="ul">
+      <li>
+        <a routerLink="/" class="link" (click)="onToggle()"> Home </a>
+      </li>
+      <li>
+        <a routerLink="/conversation" class="link" (click)="onToggle()">
+          Conversation
+        </a>
+      </li>
+      <li>
+        <a routerLink="/about" class="link" (click)="onToggle()"> About </a>
+      </li>
+    </ul>
+    <button *ngIf="isSidebarOpen" class="closeButton" (click)="onToggle()">
+      X
+    </button>
+  </div>
+</nav>

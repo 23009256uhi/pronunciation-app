@@ -1,0 +1,143 @@
+.practice-div {
+  padding: var(--content-pd);
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.speech-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.word-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.word {
+  color: #007bff;
+  font-size: 28px;
+}
+
+.phonetic {
+  font-style: italic;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.instructions {
+  background-color: #f1f1f1; /* Light background to distinguish the section */
+  padding: 15px;
+  border-radius: 8px; /* Rounded corners for a "card" feel */
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: #333; /* Darker color for readability */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for emphasis */
+}
+
+.instructions strong {
+  font-size: 18px;
+  color: #007bff; /* Make the word 'Instructions' stand out */
+}
+
+.highlight {
+  color: #dc3545; /* Highlight the key actions in a noticeable color */
+  font-weight: bold;
+}
+
+.instruction-details {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: #555;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-left: 4px solid #007bff; /* Add a vertical line to visually separate the details */
+  border-radius: 5px;
+}
+
+.icon {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+.try-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.try-button:hover {
+  background-color: #218838;
+}
+
+.recording-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.recording-button:hover {
+  background-color: #c82333;
+}
+
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.feedback {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.success {
+  color: #28a745;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.input-div {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+@media (max-width: 830px) {
+  .practice-div {
+    padding: var(--mobile-pd);
+  }
+}

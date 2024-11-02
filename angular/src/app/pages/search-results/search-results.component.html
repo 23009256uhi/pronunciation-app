@@ -1,0 +1,31 @@
+<div class="results-div">
+  <ng-container *ngIf="wordData">
+    <ng-container *ngFor="let word of wordData; let wordIndex = index">
+      <div class="word-button">
+        <h3 class="word-header">{{ word.word }}</h3>
+        <button
+          (click)="handlePracticeClick(word.word, word.phonetic)"
+          class="btn"
+        >
+          Practice this word
+        </button>
+      </div>
+      <span class="phonetic">{{ word.phonetic }}</span>
+      <div
+        *ngFor="let meaning of word.meanings; let meaningIndex = index"
+        class="definitions"
+      >
+        <!-- <div class="definitions"> -->
+        <h4 class="part-of-speech">{{ meaning.partOfSpeech }}</h4>
+        <div
+          *ngFor="let definition of meaning.definitions; let defIndex = index"
+          class="definition-div"
+        >
+          <span class="index-span">{{ defIndex + 1 }}</span>
+          <p class="definition">{{ definition.definition }}</p>
+        </div>
+        <!-- </div> -->
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

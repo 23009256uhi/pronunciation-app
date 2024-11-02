@@ -1,0 +1,14 @@
+<div class="speech-container">
+  <div class="chat-div">
+    <h3 class="chat-header">Which word do you want to practice?</h3>
+  </div>
+  <div class="input-div">
+    <input
+      type="text"
+      class="input"
+      placeholder="Write your word here"
+      (input)="handleInput($event)"
+      (keydown)="handleKeyPress($event)"
+    />
+  </div>
+</div>

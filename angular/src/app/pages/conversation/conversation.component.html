@@ -1,0 +1,29 @@
+<div class="conversation-div">
+  <div class="container">
+    <div class="chat-container">
+      <ng-container *ngFor="let msg of conversation; let msgIndex = index">
+        <app-chat-message
+          *ngIf="msg.role === 'ai'"
+          [message]="msg.text"
+          class="chat-message-animated"
+        ></app-chat-message>
+        <app-user-chat-message
+          *ngIf="msg.role !== 'ai'"
+          [message]="msg.text"
+          class="user-message"
+        ></app-user-chat-message>
+      </ng-container>
+    </div>
+    <div class="input-div-conversation">
+      <div class="inner-input-div">
+        <input
+          type="text"
+          class="input-conversation"
+          placeholder="Type your message"
+          [(ngModel)]="inputValue"
+          (keydown)="handleKeyPress($event)"
+        />
+      </div>
+    </div>
+  </div>
+</div>
