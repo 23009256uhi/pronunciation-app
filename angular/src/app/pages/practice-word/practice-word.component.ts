@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,7 +19,11 @@ export class PracticeWordComponent {
   feedback: string = '';
   recognitionRef: any = null;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     // GET WORD AND PHONETIC
@@ -54,15 +58,13 @@ export class PracticeWordComponent {
 
   // START RECORDING VOICE FUNCTION--------------------------------------------------------
   startRecording(): void {
-    console.log('start recording called');
-
     if (!('webkitSpeechRecognition' in window)) {
       alert('Your browser does not support speech recognition');
       return;
     }
 
     const recognition = new (window as any).webkitSpeechRecognition();
-    this.recognitionRef.current = recognition;
+    this.recognitionRef = recognition;
 
     recognition.lang = 'en-GB';
     recognition.continuous = false;
@@ -72,21 +74,25 @@ export class PracticeWordComponent {
     recognition.onstart = () => {
       console.log('Speech recognition started');
       this.isRecording = true;
+      this.cdr.detectChanges();
     };
 
     // Event: when recognition result is received
     recognition.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript;
-      // this.transcript = transcript;
+      this.transcript = transcript;
+
+      console.log(transcript);
 
       this.http
         .post('http://localhost:5000/analyse', {
-          recognisedText: transcript,
+          recognizedText: transcript,
           expectedWord: this.word,
         })
         .subscribe(
           (response: any) => {
-            this.feedback = response.data;
+            this.feedback = response;
+            this.cdr.detectChanges();
           },
           (error) => {
             console.error('Error comparing phonetics:', error);
@@ -98,6 +104,7 @@ export class PracticeWordComponent {
     recognition.onend = () => {
       console.log('Speech recognition ended');
       this.isRecording = false;
+      this.cdr.detectChanges();
     };
 
     // Event: on error
@@ -112,8 +119,9 @@ export class PracticeWordComponent {
 
   // STOP RECORDING VOICE FUNCTION--------------------------------------------------------
   stopRecording(): void {
-    if (this.recognitionRef.current) {
-      this.recognitionRef.current.stop();
+    if (this.recognitionRef) {
+      this.recognitionRef.stop();
     }
+    this.cdr.detectChanges();
   }
 }
