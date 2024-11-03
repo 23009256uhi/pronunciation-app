@@ -8,6 +8,7 @@ function SearchResults() {
   const [wordData, setWordData] = useState(null);
   const navigate = useNavigate();
 
+  // Fetch data based on the route parameter
   async function fetchWordData() {
     try {
       const response = await axios.post("http://localhost:5000/fetchword", {
@@ -20,16 +21,19 @@ function SearchResults() {
     }
   }
 
+  // Navigate to the practice page
   function handlePracticeClick(word, phonetic) {
     navigate(`/practice`, { state: { word, phonetic } });
   }
 
+  // Fetch the word data when the component is mounted
   useEffect(() => {
     fetchWordData();
   }, [word]);
 
   return (
     <div className="results-div">
+      {/* Loop through the searched word data */}
       {wordData && (
         <>
           {wordData.map((word, index) => (
@@ -44,9 +48,13 @@ function SearchResults() {
                 </button>
               </div>
               <span className="phonetic">{word.phonetic}</span>
+
+              {/* Loop through the word meanings */}
               {word.meanings.map((meaning, index) => (
                 <div key={index} className="definitions">
                   <h4 className="part-of-speech">{meaning.partOfSpeech}</h4>
+
+                  {/* Loop through the word definitions */}
                   {meaning.definitions.map((definition, index) => (
                     <div key={index} className="definition-div">
                       <span className="index-span">{index + 1}</span>

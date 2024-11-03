@@ -6,10 +6,13 @@ function Navbar({ isSidebarOpen, toggleSidebar }) {
   return (
     <nav className={styles.navbar}>
       <div className={styles.sticky}>
+        {/* Logo */}
         <div className={styles.logo}>
           <img src={logoIcon} alt="icon" className={styles.logoIcon} />
           <span>LinguaAI</span>
         </div>
+
+        {/* Links */}
         <ul className={styles.ul}>
           <li>
             <Link className={styles.link} to="/" onClick={toggleSidebar}>
@@ -31,6 +34,8 @@ function Navbar({ isSidebarOpen, toggleSidebar }) {
             </Link>
           </li>
         </ul>
+
+        {/* X button for mobile sidebar */}
         {isSidebarOpen && (
           <button className={styles.closeButton} onClick={toggleSidebar}>
             X

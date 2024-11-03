@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// import SpeechRecognitionComponent from "..SpeechRecognitionComponent.vue";
 import SpeechRecognitionComponent from "../components/SpeechRecognitionComponent.vue";
 
 export default {
@@ -26,14 +25,6 @@ export default {
   height: 100%;
   padding: 4rem 2rem;
 }
-
-/* .speech-component {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
 
 @media (max-width: 830px) {
   .home-div {

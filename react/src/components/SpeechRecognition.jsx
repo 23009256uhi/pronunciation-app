@@ -6,10 +6,12 @@ function SpeechRecognition() {
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
 
+  // Function to navigate to results page
   function navigateToResults() {
     navigate(`/search/${inputValue}`);
   }
 
+  // Event handler for Enter key press
   function handleKeyPress(event) {
     if (event.key === "Enter") {
       navigateToResults();
@@ -19,12 +21,15 @@ function SpeechRecognition() {
   return (
     <div className={styles.speechContainer}>
       <>
+        {/* Title */}
         <div className={styles.chatDiv}>
           <h3 className={styles.chatHeader}>
             Which word do you want to practice?
           </h3>
         </div>
       </>
+
+      {/* Input */}
       <div className={styles.inputDiv}>
         <input
           type="text"

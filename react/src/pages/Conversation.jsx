@@ -5,14 +5,8 @@ import ChatMessage from "../components/ChatMessage";
 import UserChatMessage from "../components/UserChatMessage";
 
 function Conversation() {
-  const firstMessage = "Hi! What do you want to talk about?";
   const [conversation, setConversation] = useState([]);
   const [inputValue, setInputValue] = useState("");
-
-  // const handleSendMessage = (message) => {
-  //   // This is where you can implement the logic to send and receive messages
-  //   setConversation([...conversation, { sender: "User", text: message }]);
-  // };
 
   // Fetch the entire conversation history when the component mounts
   async function fetchMessages() {
@@ -24,12 +18,14 @@ function Conversation() {
     }
   }
 
+  // Handle Enter key press to send the message
   function handleKeyPress(event) {
     if (event.key === "Enter") {
       handleSendMessage();
     }
   }
 
+  // Handle seding a message
   async function handleSendMessage() {
     if (!inputValue.trim()) return; // Prevent sending empty messages
 
@@ -43,18 +39,16 @@ function Conversation() {
         inputValue,
       });
 
-      console.log(response.data);
       const aiMessage = { role: "ai", text: response.data };
       setConversation([...updatedConversation, aiMessage]);
 
       setInputValue("");
-
-      // fetchMessages();
     } catch (error) {
       console.error("Error sending message:", error);
     }
   }
 
+  // Fetch messages on component mount
   useEffect(() => {
     fetchMessages();
   }, []);
@@ -63,6 +57,7 @@ function Conversation() {
     <div className={styles.conversationDiv}>
       <div className={styles.container}>
         <div className={styles.chatContainer}>
+          {/* Loop through the conversation and render messages */}
           {conversation.map((msg, index) =>
             msg.role === "ai" ? (
               <ChatMessage
@@ -79,6 +74,8 @@ function Conversation() {
             )
           )}
         </div>
+
+        {/* Input Field */}
         <div className={styles.inputDiv}>
           <div className={styles.innerInputDiv}>
             <input

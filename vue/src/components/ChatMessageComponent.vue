@@ -1,8 +1,4 @@
 <template>
-  <!-- <div :class="['chat-message-div', className]">
-    <img :src="logoIcon" alt="icon" class="logo-icon" />
-    <p class="message">{{ message }}</p>
-  </div> -->
   <div class="chat-message-div">
     <img :src="logoIcon" alt="icon" class="logo-icon" />
     <p class="message">{{ message }}</p>
@@ -19,10 +15,6 @@ export default {
       type: String,
       required: true,
     },
-    // className: {
-    //   type: String,
-    //   required: true,
-    // },
   },
   data() {
     return {

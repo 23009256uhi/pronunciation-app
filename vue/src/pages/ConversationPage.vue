@@ -65,7 +65,7 @@ export default {
 
     // Handle seding a message
     async function handleSendMessage() {
-      if (!inputValue.value.trim()) return;
+      if (!inputValue.value.trim()) return; // Prevent sending empty messages
 
       try {
         const updatedConversation = [

@@ -12,7 +12,7 @@ function PracticeWord() {
   const [isRecording, setIsRecording] = useState(false);
   const recognitionRef = useRef(null);
 
-  // GET INSTRUCTIONS FUNCTION--------------------------------------------------------
+  // Fetch Instructions
   async function getInstructions(phonetic) {
     try {
       const response = await axios.post("http://localhost:5000/instructions", {
@@ -24,19 +24,13 @@ function PracticeWord() {
     }
   }
 
-  // ANALYSE VOICE TRANSCRIPT--------------------------------------------------------
+  // Analyse Voice Transcript
   async function analyse() {
-    console.log("start analyse");
-    console.log("transcript:", transcript);
-
     try {
-      console.log("before post");
       const response = await axios.post("http://localhost:5000/analyse", {
         recognizedText: transcript,
         expectedWord: word,
       });
-      console.log("after post");
-      console.log(response.data);
       setFeedback(response.data);
     } catch (error) {
       console.error("Error comparing phonetics:", error);
@@ -44,7 +38,7 @@ function PracticeWord() {
     }
   }
 
-  // START RECORDING VOICE FUNCTION--------------------------------------------------------
+  // Start Recording Voice
   function startRecording() {
     if (!("webkitSpeechRecognition" in window)) {
       alert("Your browser does not support speech recognition");
@@ -53,13 +47,11 @@ function PracticeWord() {
 
     const recognition = new window.webkitSpeechRecognition();
     recognitionRef.current = recognition;
-
     recognition.lang = "en-GB";
     recognition.continuous = false;
     recognition.interimResults = false;
 
     recognition.onstart = () => {
-      console.log("Speech recognition started");
       setIsRecording(true);
     };
 
@@ -87,37 +79,34 @@ function PracticeWord() {
     };
 
     recognition.onend = () => {
-      console.log("Speech recognition ended");
       setIsRecording(false);
     };
 
     recognition.start();
   }
 
-  // STOP RECORDING VOICE FUNCTION--------------------------------------------------------
+  // Stop Recording Voice
   function stopRecording() {
     if (recognitionRef.current) {
       recognitionRef.current.stop();
     }
   }
 
-  // CALL ANALYSE WHEN TRANSCRIPT IS UPDATED
+  // Watch for transcript changes to call analyse function
   useEffect(() => {
     if (transcript) {
       analyse();
     }
   }, [transcript]);
 
-  // -----------------------------------------------------------------------------------
-
+  // Fetch instructions on component mount
   useEffect(() => {
     getInstructions(phonetic);
   }, [phonetic]);
 
-  // -----------------------------------------------------------------------------------
-
   return (
     <div className={styles.practiceDiv}>
+      {/* Word Phonetic and Instructions */}
       {word && phonetic ? (
         <div className={styles.speechContainer}>
           <h1 className={styles.wordTitle}>
@@ -136,7 +125,7 @@ function PracticeWord() {
           </p>
           <p className={styles.instructionDetails}>{instructions}</p>
 
-          {/* Button with Microphone for Start Recording */}
+          {/* Button for Start/Stop Recording */}
           <button
             className={isRecording ? styles.recordingButton : styles.tryButton}
             onClick={isRecording ? stopRecording : startRecording}
@@ -144,6 +133,7 @@ function PracticeWord() {
             {isRecording ? <>Stop Recording</> : <>Start Recording</>}
           </button>
 
+          {/* Feedback */}
           <div className={styles.feedbackContainer}>
             <p className={styles.transcript}>Transcript: {transcript}</p>
             <p

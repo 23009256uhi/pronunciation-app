@@ -1,10 +1,13 @@
 <template>
   <nav class="navbar">
     <div class="sticky">
+      <!-- Logo -->
       <div class="logo">
         <img :src="logoIcon" alt="icon" class="logo-icon" />
         <span>LinguaAI</span>
       </div>
+
+      <!-- Links -->
       <ul class="ul">
         <li>
           <router-link class="link" to="/" @click="toggleSidebar"
@@ -22,6 +25,8 @@
           >
         </li>
       </ul>
+
+      <!-- X button for mobile sidebar -->
       <button v-if="isSidebarOpen" class="close-button" @click="toggleSidebar">
         X
       </button>

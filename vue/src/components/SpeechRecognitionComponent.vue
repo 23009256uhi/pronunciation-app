@@ -1,8 +1,11 @@
 <template>
   <div class="speech-container">
+    <!-- Title -->
     <div class="chat-div">
       <h3 class="chat-header">Which word do you want to practice?</h3>
     </div>
+
+    <!-- Input -->
     <div class="input-div">
       <input
         type="text"

@@ -1,6 +1,6 @@
 <div class="app">
   <div class="main-container">
-    <!-- HAMBURGET BUTTON -->
+    <!-- Hamburger Button -->
     <button
       *ngIf="!isSidebarOpen"
       class="hamburger-btn"
@@ -9,7 +9,7 @@
       &#9776;
     </button>
 
-    <!-- SIDEBAR (NAVBAR) -->
+    <!-- Sidebar Menu -->
     <div class="side-menu" [ngClass]="{ open: isSidebarOpen }">
       <app-navbar
         [isSidebarOpen]="isSidebarOpen"
@@ -17,7 +17,7 @@
       ></app-navbar>
     </div>
 
-    <!-- This is where the routed component will be displayed -->
+    <!-- Router View -->
     <div>
       <router-outlet />
     </div>

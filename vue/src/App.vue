@@ -103,18 +103,17 @@ export default {
   background: none;
   border: none;
   color: var(--text-cl);
-  /* position: fixed; */
   position: absolute;
   top: 10px;
   left: 10px;
   cursor: pointer;
-  z-index: 1100; /* Higher z-index to keep it above the sidebar */
+  z-index: 1100;
 }
 
 @media (max-width: 830px) {
   .side-menu {
     transform: translateX(-100%);
-    position: fixed; /* Make the sidebar fixed on smaller screens */
+    position: fixed;
     z-index: 1000;
     height: 100vh;
   }

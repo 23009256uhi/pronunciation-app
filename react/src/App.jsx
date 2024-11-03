@@ -23,7 +23,6 @@ function App() {
 
   useEffect(() => {
     handleResize();
-
     window.addEventListener("resize", handleResize);
 
     // Cleanup the event listener
@@ -36,17 +35,22 @@ function App() {
     <Router>
       <div className="App">
         <div className="main-container">
+          {/* Hamburger Button */}
           {!isSidebarOpen && (
             <button className="hamburger-btn" onClick={toggleSidebar}>
               &#9776;
             </button>
           )}
+
+          {/* Sidebar Menu */}
           <div className={`side-menu ${isSidebarOpen ? "open" : ""}`}>
             <Navbar
               isSidebarOpen={isSidebarOpen}
               toggleSidebar={toggleSidebar}
             />
           </div>
+
+          {/* Router View */}
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/search/:word" element={<SearchResults />} />

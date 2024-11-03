@@ -1,5 +1,6 @@
 <template>
   <div class="practice-div">
+    <!-- Word Phonetic and Instructions -->
     <div v-if="word && phonetic" class="speech-container">
       <h1 class="word-title">
         Let's practice how to say: <span class="word">{{ word }}</span>
@@ -14,6 +15,7 @@
       </p>
       <p class="instruction-details">{{ instructions }}</p>
 
+      <!-- Button for Start/Stop Recording -->
       <button
         :class="isRecording ? 'recording-button' : 'try-button'"
         @click="isRecording ? stopRecording() : startRecording()"
@@ -21,6 +23,7 @@
         {{ isRecording ? "Stop Recording" : "Start Recording" }}
       </button>
 
+      <!-- Feedback -->
       <div class="feedback-container">
         <p class="transcript">Transcript: {{ transcript }}</p>
         <p
@@ -55,7 +58,7 @@ export default {
     const isRecording = ref(false);
     const recognitionRef = ref(null);
 
-    // Fetch instructions
+    // Fetch Instructions
     async function getInstructions(phonetic) {
       try {
         const response = await axios.post(
@@ -70,7 +73,7 @@ export default {
       }
     }
 
-    // Analyse voice transcript
+    // Analyse Voice Transcript
     async function analyse() {
       try {
         const response = await axios.post("http://localhost:5000/analyse", {
@@ -84,7 +87,7 @@ export default {
       }
     }
 
-    // Start recording voice
+    // Start Recording Voice
     function startRecording() {
       if (!("webkitSpeechRecognition" in window)) {
         alert("Your browser does not support speech recognition");
@@ -103,6 +106,7 @@ export default {
 
       recognition.onresult = (event) => {
         transcript.value = event.results[0][0].transcript;
+
         axios
           .post("http://localhost:5000/analyse", {
             recognizedText: transcript.value,
@@ -201,23 +205,23 @@ export default {
 }
 
 .instructions {
-  background-color: #f1f1f1; /* Light background to distinguish the section */
+  background-color: #f1f1f1;
   padding: 15px;
-  border-radius: 8px; /* Rounded corners for a "card" feel */
+  border-radius: 8px;
   margin-bottom: 15px;
   font-size: 1.6rem;
   line-height: 1.5;
-  color: #333; /* Darker color for readability */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for emphasis */
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .instructions strong {
   font-size: 18px;
-  color: #007bff; /* Make the word 'Instructions' stand out */
+  color: #007bff;
 }
 
 .highlight {
-  color: #dc3545; /* Highlight the key actions in a noticeable color */
+  color: #dc3545;
   font-weight: bold;
 }
 
@@ -228,12 +232,12 @@ export default {
   margin-top: 10px;
   padding: 10px;
   background-color: #f9f9f9;
-  border-left: 4px solid #007bff; /* Add a vertical line to visually separate the details */
+  border-left: 4px solid #007bff;
   border-radius: 5px;
 }
 
 .icon {
-  margin-right: 8px; /* Space between icon and text */
+  margin-right: 8px;
 }
 
 .try-button {

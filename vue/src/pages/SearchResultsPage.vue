@@ -1,5 +1,6 @@
 <template>
   <div class="results-div">
+    <!-- Loop through the searched word data -->
     <div v-if="wordData">
       <div v-for="(word, wordIndex) in wordData" :key="wordIndex">
         <div class="word-button">
@@ -15,6 +16,7 @@
         </div>
         <span class="phonetic">{{ word.phonetic }}</span>
 
+        <!-- Loop through the word meanings -->
         <div
           v-for="(meaning, meaningIndex) in word.meanings"
           :key="meaningIndex"
@@ -22,6 +24,7 @@
         >
           <h4 class="part-of-speech">{{ meaning.partOfSpeech }}</h4>
 
+          <!-- Loop through the word definitions -->
           <div
             v-for="(definition, definitionIndex) in meaning.definitions"
             :key="definitionIndex"
