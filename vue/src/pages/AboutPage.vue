@@ -2,26 +2,23 @@
   <div class="container">
     <h1 class="heading">About Us</h1>
     <p class="paragraph">
-      Welcome to our website! We are dedicated to providing the best service
-      possible, with a focus on reliability, customer satisfaction, and
-      innovation. Our team of experts works around the clock to bring you the
-      latest and greatest in the industry.
+      Welcome to <strong>LinguaAI</strong> – an AI-powered dictionary app
+      designed to help you not only understand words but also master their
+      pronunciation, so you can express yourself with clarity and confidence.
     </p>
     <p class="paragraph">
-      Founded in <strong>[Year]</strong>, we have continuously grown our
-      offerings and expanded our expertise, ensuring that we remain at the
-      forefront of the field. We are committed to maintaining the highest
-      standards of quality and excellence in everything we do.
+      Our app leverages advanced AI technology to give you immediate feedback on
+      your pronunciation, so you can improve steadily and sound more natural
+      when speaking. Each word includes an interactive pronunciation feature.
+      Say the word aloud, and LinguaAI listens, analyzes, and provides feedback
+      to help you improve. Our intelligent feedback system highlights where your
+      pronunciation can be adjusted, focusing on aspects like stress,
+      intonation, and sound accuracy.
     </p>
     <p class="paragraph">
-      Our mission is to create value for our customers through innovative
-      solutions, outstanding service, and a commitment to integrity. Whether
-      you're here for <strong>[service/product your company provides]</strong>
-      , or just browsing, we're here to support you every step of the way.
-    </p>
-    <p class="paragraph">
-      Thank you for visiting! If you have any questions or feedback, feel free
-      to
+      We’re here to help you on every step of your journey. If you have any
+      questions or feedback, feel free to reach out – we’d love to hear from
+      you.
     </p>
   </div>
 </template>
