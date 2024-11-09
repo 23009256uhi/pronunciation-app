@@ -25,13 +25,7 @@
 
       <!-- Feedback -->
       <div class="feedback-container">
-        <p class="transcript">Transcript: {{ transcript }}</p>
-        <p
-          :class="[
-            'feedback',
-            feedback.includes('Failed') ? 'error' : 'success',
-          ]"
-        >
+        <p class="feedback">
           {{ feedback }}
         </p>
       </div>

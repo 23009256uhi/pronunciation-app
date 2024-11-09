@@ -22,11 +22,7 @@
     </button>
 
     <div class="feedback-container">
-      <p class="transcript">Transcript: {{ transcript }}</p>
-      <p
-        [ngClass]="feedback.includes('Failed') ? 'error' : 'success'"
-        class="feedback"
-      >
+      <p class="feedback">
         {{ feedback }}
       </p>
     </div>

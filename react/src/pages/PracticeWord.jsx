@@ -135,14 +135,8 @@ function PracticeWord() {
 
           {/* Feedback */}
           <div className={styles.feedbackContainer}>
-            <p className={styles.transcript}>Transcript: {transcript}</p>
-            <p
-              className={`${styles.feedback} ${
-                feedback.includes("Failed") ? styles.error : styles.success
-              }`}
-            >
-              {feedback}
-            </p>
+            {/* <p className={styles.transcript}>Transcript: {transcript}</p> */}
+            <p className={styles.feedback}>{feedback}</p>
           </div>
         </div>
       ) : (

@@ -119,7 +119,10 @@ app.post("/analyse", async (req, res) => {
     const expectedCode = metaphone(expectedWord);
 
     if (recognizedCode === expectedCode) {
-      return res.json(true);
+      // return res.json(true);
+      // const prompt = `The user said "${recognizedText}" but should have said "${expectedWord}". Provide detailed feedback on how to improve their pronunciation, focusing on the differences between "${recognizedCode}" and "${expectedCode}". Just say 1. what is wrong and 2. how to improve. Reply as it was a conversation between you and the user and don't make a list`;
+      // const reply = await run(prompt);
+      return res.json("Correct!");
     } else {
       const prompt = `The user said "${recognizedText}" but should have said "${expectedWord}". Provide detailed feedback on how to improve their pronunciation, focusing on the differences between "${recognizedCode}" and "${expectedCode}". Just say 1. what is wrong and 2. how to improve. Reply as it was a conversation between you and the user and don't make a list`;
       const reply = await run(prompt);
@@ -178,6 +181,8 @@ app.post("/conversation", async (req, res) => {
 app.get("/messages", (req, res) => {
   res.json({ messages });
 });
+
+// -------------------------------------------------------------------------------------------------------------------------
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
