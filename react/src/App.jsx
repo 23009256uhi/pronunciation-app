@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Navbar from "./components/Navbar";
 
 function App() {
+  const apiUrl = "https://pronunciation-app.onrender.com";
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   function toggleSidebar() {
@@ -53,9 +54,18 @@ function App() {
           {/* Router View */}
           <Routes>
             <Route path="/" exact element={<Home />} />
-            <Route path="/search/:word" element={<SearchResults />} />
-            <Route path="/conversation" element={<Conversation />} />
-            <Route path="/practice" element={<PracticeWord />} />
+            <Route
+              path="/search/:word"
+              element={<SearchResults apiUrl={apiUrl} />}
+            />
+            <Route
+              path="/conversation"
+              element={<Conversation apiUrl={apiUrl} />}
+            />
+            <Route
+              path="/practice"
+              element={<PracticeWord apiUrl={apiUrl} />}
+            />
             <Route path="/about" element={<About />} />
           </Routes>
         </div>

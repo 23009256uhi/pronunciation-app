@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function SearchResults() {
+function SearchResults({ apiUrl }) {
   const { word } = useParams();
   const [wordData, setWordData] = useState(null);
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ function SearchResults() {
   // Fetch data based on the route parameter
   async function fetchWordData() {
     try {
-      const response = await axios.post("http://localhost:5000/fetchword", {
+      const response = await axios.post(`${apiUrl}/fetchword`, {
         userInput: word,
       });
       setWordData(response.data);

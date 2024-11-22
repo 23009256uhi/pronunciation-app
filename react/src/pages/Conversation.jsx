@@ -5,6 +5,7 @@ import ChatMessage from "../components/ChatMessage";
 import UserChatMessage from "../components/UserChatMessage";
 
 function Conversation() {
+  const apiUrl = "https://pronunciation-app.onrender.com";
   const [conversation, setConversation] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
