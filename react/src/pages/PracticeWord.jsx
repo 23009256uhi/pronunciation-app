@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import styles from "./PracticeWord.module.css";
 
-function PracticeWord() {
+function PracticeWord({ apiUrl }) {
   const location = useLocation();
   const { word, phonetic } = location.state || {};
   const [instructions, setInstructions] = useState("");
@@ -15,7 +15,7 @@ function PracticeWord() {
   // Fetch Instructions
   async function getInstructions(phonetic) {
     try {
-      const response = await axios.post("http://localhost:5000/instructions", {
+      const response = await axios.post(`${apiUrl}/instructions`, {
         phonetic: phonetic,
       });
       setInstructions(response.data);
@@ -27,7 +27,7 @@ function PracticeWord() {
   // Analyse Voice Transcript
   async function analyse() {
     try {
-      const response = await axios.post("http://localhost:5000/analyse", {
+      const response = await axios.post(`${apiUrl}/analyse`, {
         recognizedText: transcript,
         expectedWord: word,
       });
@@ -59,7 +59,7 @@ function PracticeWord() {
       const transcript = event.results[0][0].transcript;
 
       axios
-        .post("http://localhost:5000/analyse", {
+        .post(`${apiUrl}/analyse`, {
           recognizedText: transcript,
           expectedWord: word,
         })

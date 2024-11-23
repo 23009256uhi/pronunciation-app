@@ -4,15 +4,14 @@ import styles from "./Conversation.module.css";
 import ChatMessage from "../components/ChatMessage";
 import UserChatMessage from "../components/UserChatMessage";
 
-function Conversation() {
-  const apiUrl = "https://pronunciation-app.onrender.com";
+function Conversation({ apiUrl }) {
   const [conversation, setConversation] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
   // Fetch the entire conversation history when the component mounts
   async function fetchMessages() {
     try {
-      const response = await axios.get("http://localhost:5000/messages");
+      const response = await axios.get(`${apiUrl}/messages`);
       setConversation(response.data.messages);
     } catch (error) {
       console.error("Error fetching messages:", error);
@@ -36,7 +35,7 @@ function Conversation() {
         { role: "user", text: inputValue },
       ];
 
-      const response = await axios.post("http://localhost:5000/conversation", {
+      const response = await axios.post(`${apiUrl}/conversation`, {
         inputValue,
       });
 
