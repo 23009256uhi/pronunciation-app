@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatMessageComponent } from '../../components/chat-message/chat-message.component';
 import { UserChatMessageComponent } from '../../components/user-chat-message/user-chat-message.component';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-conversation',
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './conversation.component.css',
 })
 export class ConversationComponent {
+  apiUrl = environment.apiUrl;
   conversation: any = null;
   inputValue: string = '';
 
@@ -30,13 +32,11 @@ export class ConversationComponent {
 
   fetchMessages(): void {
     try {
-      this.http
-        .get('http://localhost:5000/messages')
-        .subscribe((response: any) => {
-          console.log(response);
-          this.conversation = response.messages;
-          console.log(this.conversation);
-        });
+      this.http.get(`${this.apiUrl}/messages`).subscribe((response: any) => {
+        console.log(response);
+        this.conversation = response.messages;
+        console.log(this.conversation);
+      });
     } catch (error) {
       console.error('Error fetching messages', error);
     }
@@ -58,7 +58,7 @@ export class ConversationComponent {
 
     try {
       const response: any = await this.http
-        .post('http://localhost:5000/conversation', {
+        .post(`${this.apiUrl}/conversation`, {
           inputValue: this.inputValue,
         })
         .toPromise();

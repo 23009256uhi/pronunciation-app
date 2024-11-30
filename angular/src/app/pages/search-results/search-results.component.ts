@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-search-results',
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './search-results.component.css',
 })
 export class SearchResultsComponent {
+  apiUrl = environment.apiUrl;
   word: string | null = null;
   wordData: any = null;
 
@@ -30,7 +32,7 @@ export class SearchResultsComponent {
   fetchWordData(): void {
     if (this.word) {
       this.http
-        .post('http://localhost:5000/fetchword', { userInput: this.word })
+        .post(`${this.apiUrl}/fetchword`, { userInput: this.word })
         .subscribe(
           (response: any) => {
             this.wordData = response;

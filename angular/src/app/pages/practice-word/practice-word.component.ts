@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-practice-word',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './practice-word.component.css',
 })
 export class PracticeWordComponent {
+  apiUrl = environment.apiUrl;
   word: string = '';
   phonetic: string = '';
   instructions: string = '';
@@ -45,7 +47,7 @@ export class PracticeWordComponent {
   // GET INSTRUCTIONS FUNCTION--------------------------------------------------------
   getInstruction(phonetic: string): void {
     this.http
-      .post('http://localhost:5000/instructions', { phonetic: phonetic })
+      .post(`${this.apiUrl}/instructions`, { phonetic: phonetic })
       .subscribe(
         (response: any) => {
           this.instructions = response;
@@ -85,7 +87,7 @@ export class PracticeWordComponent {
       console.log(transcript);
 
       this.http
-        .post('http://localhost:5000/analyse', {
+        .post(`${this.apiUrl}/analyse`, {
           recognizedText: transcript,
           expectedWord: this.word,
         })
