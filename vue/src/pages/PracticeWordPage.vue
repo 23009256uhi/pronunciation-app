@@ -42,6 +42,7 @@ import axios from "axios";
 export default {
   name: "PracticeWordPage",
   setup() {
+    const apiUrl = process.env.VUE_APP_API_URL;
     const route = useRoute();
     const word = ref(route.query.word);
     const phonetic = ref(route.query.phonetic);
@@ -55,12 +56,9 @@ export default {
     // Fetch Instructions
     async function getInstructions(phonetic) {
       try {
-        const response = await axios.post(
-          "http://localhost:5000/instructions",
-          {
-            phonetic: phonetic,
-          }
-        );
+        const response = await axios.post(`${apiUrl}/instructions`, {
+          phonetic: phonetic,
+        });
         instructions.value = response.data;
       } catch (error) {
         console.error("Error getting instructions:", error);
@@ -70,7 +68,7 @@ export default {
     // Analyse Voice Transcript
     async function analyse() {
       try {
-        const response = await axios.post("http://localhost:5000/analyse", {
+        const response = await axios.post(`${apiUrl}/analyse`, {
           recognizedText: transcript.value,
           expectedWord: word.value,
         });
@@ -102,7 +100,7 @@ export default {
         transcript.value = event.results[0][0].transcript;
 
         axios
-          .post("http://localhost:5000/analyse", {
+          .post(`${apiUrl}/analyse`, {
             recognizedText: transcript.value,
             expectedWord: word.value,
           })

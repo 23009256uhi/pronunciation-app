@@ -50,13 +50,14 @@ export default {
     UserChatMessageComponent,
   },
   setup() {
+    const apiUrl = process.env.VUE_APP_API_URL;
     const conversation = ref([]);
     const inputValue = ref("");
 
     // Fetch the entire conversation history when the component mounts
     async function fetchMessages() {
       try {
-        const response = await axios.get("http://localhost:5000/messages");
+        const response = await axios.get(`${apiUrl}/messages`);
         conversation.value = response.data.messages;
       } catch (error) {
         console.error("Error fetching messages:", error);
@@ -73,12 +74,9 @@ export default {
           { role: "user", text: inputValue.value },
         ];
 
-        const response = await axios.post(
-          "http://localhost:5000/conversation",
-          {
-            inputValue: inputValue.value,
-          }
-        );
+        const response = await axios.post(`${apiUrl}/conversation`, {
+          inputValue: inputValue.value,
+        });
 
         const aiMessage = { role: "ai", text: response.data };
         conversation.value = [...updatedConversation, aiMessage];

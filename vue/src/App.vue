@@ -12,7 +12,11 @@
 
       <!-- Sidebar Menu -->
       <div :class="['side-menu', { open: isSidebarOpen }]">
-        <Navbar :isSidebarOpen="isSidebarOpen" :toggleSidebar="toggleSidebar" />
+        <Navbar
+          :apiUrl="apiUrl"
+          :isSidebarOpen="isSidebarOpen"
+          :toggleSidebar="toggleSidebar"
+        />
       </div>
 
       <!-- Router View -->
@@ -31,6 +35,7 @@ export default {
     Navbar,
   },
   setup() {
+    const apiUrl = "https://pronunciation-app.onrender.com";
     const isSidebarOpen = ref(false);
 
     function toggleSidebar() {
@@ -55,6 +60,7 @@ export default {
     });
 
     return {
+      apiUrl,
       isSidebarOpen,
       toggleSidebar,
     };

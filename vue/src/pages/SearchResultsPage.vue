@@ -47,6 +47,7 @@ import axios from "axios";
 export default {
   name: "SearchResultsPage",
   setup() {
+    const apiUrl = process.env.VUE_APP_API_URL;
     const route = useRoute();
     const router = useRouter();
     const word = route.params.word;
@@ -55,7 +56,7 @@ export default {
     // Fetch data based on the route parameter
     async function fetchWordData() {
       try {
-        const response = await axios.post("http://localhost:5000/fetchword", {
+        const response = await axios.post(`${apiUrl}/fetchword`, {
           userInput: word,
         });
         wordData.value = response.data;
